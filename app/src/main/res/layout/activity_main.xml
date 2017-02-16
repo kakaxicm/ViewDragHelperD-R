@@ -8,30 +8,27 @@
 
     <TextView
         android:layout_margin="10dp"
-        android:gravity="center"
-        android:layout_gravity="center"
         android:background="#44ff0000"
-        android:text="I can be dragged !"
+        android:text="随意拖动"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:clickable="true"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="#44ff0000"
+        android:text="松手返回"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:clickable="true"/>
 
     <TextView
         android:layout_margin="10dp"
-        android:layout_gravity="center"
         android:gravity="center"
         android:background="#44ff0000"
-        android:text="back to origin !"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:clickable="true"/>
-
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="#44ff0000"
-        android:text="edge tracker !"
+        android:text="边界检测"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:clickable="true"/>
