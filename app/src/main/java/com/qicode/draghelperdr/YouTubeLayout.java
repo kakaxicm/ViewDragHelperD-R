@@ -2,7 +2,6 @@ package com.qicode.draghelperdr;
 
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,15 +17,12 @@ import android.widget.Toast;
 public class YouTubeLayout extends ViewGroup{
 
     private ViewDragHelper mDragHelper;
-    private View mHeaderView;
+    private View mHeaderView;//头部View，唯一需要被捕获的View
     private View mDescView;
 
-    private float mInitialMotionX;
-    private float mInitialMotionY;
-
-    private int mDragRange;
-    private int mTop;
-    private float mDragOffset;
+    private int mDragRange;//滚动范围:总高度-header的高度
+    private int mTop;//滚动过程中的当期top位置,用于View重绘
+    private float mDragOffset;//拖动距离百分比,用于判断松手行为
 
     public YouTubeLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -42,6 +38,7 @@ public class YouTubeLayout extends ViewGroup{
         super.onFinishInflate();
         mHeaderView = findViewById(R.id.viewHeader);
         mDescView = findViewById(R.id.viewDesc);
+        //点击事件测试
         mDescView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,13 +113,8 @@ public class YouTubeLayout extends ViewGroup{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int maxHeight = MeasureSpec.getSize(heightMeasureSpec);
-
-        setMeasuredDimension(resolveSizeAndState(maxWidth, widthMeasureSpec, 0),
-                resolveSizeAndState(maxHeight, heightMeasureSpec, 0));
+        measureChildren(widthMeasureSpec, heightMeasureSpec);//测量子布局
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
